@@ -16,7 +16,7 @@ import Pagination from '../components/Pagination/Pagination'
 
 const Catalog = observer(() => {
 	const { tovar } = useContext(Context)
-
+	/* */
 	useEffect(() => {
 		fetchBrand().then((data) => tovar.setBrend(data))
 		fetchColor().then((data) => tovar.setColor(data))
