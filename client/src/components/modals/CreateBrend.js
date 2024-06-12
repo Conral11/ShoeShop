@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { createBrend } from '../../http/productAPI';
+import React, { useState } from 'react'
+import { createBrend } from '../../http/productAPI'
 
 const CreateBrend = ({ isOpen, onClose }) => {
-	const [name, setName] = useState('')
-	const [image, setImage] = useState('')
+	const [value, setValue] = useState('')
+	const [img, setImg] = useState('')
 
 	const addBrend = () => {
-		createBrend({ name: name, image: image }).then((data) => {
-			setName('')
+		createBrend({ name: value, img_url: img }).then((data) => {
+			setValue('')
+			setImg('')
 			onClose()
 		})
 	}
@@ -19,23 +20,23 @@ const CreateBrend = ({ isOpen, onClose }) => {
 	return (
 		<section className='modal'>
 			<div className='modal-content'>
-				<span className="close-button" onClick={onClose}>
+				<span className='close-button' onClick={onClose}>
 					&times;
 				</span>
-				<h2 style={{ textAlign: 'center' }} className='big-title-admin'>
+				<h2 style={{ textAlign: 'center' }} className='big-title'>
 					Добавить бренд
 				</h2>
 				<input
 					className='input-custom-dark'
-					value={name}
-					onChange={(e) => setName(e.target.value)}
+					value={value}
+					onChange={(e) => setValue(e.target.value)}
 					placeholder={'Введите бренд'}
 				/>
 				<input
 					className='input-custom-dark'
-					value={image}
-					onChange={(e) => setImage(e.target.value)}
-					placeholder={'Введите ссылку на изображение'}
+					value={img}
+					onChange={(e) => setImg(e.target.value)}
+					placeholder={'Введите url'}
 				/>
 				<div className='modal-footer'>
 					<button className='button-custom' onClick={addBrend}>

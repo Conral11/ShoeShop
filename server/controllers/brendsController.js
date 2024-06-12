@@ -2,8 +2,8 @@ const { Brend } = require('../models/models')
 
 class brendsController {
 	async create(req, res) {
-		const { name } = req.body
-		const brends = await Brend.create({ name })
+		const { name, img_url } = req.body
+		const brends = await Brend.create({ name, img_url })
 		return res.json(brends)
 	}
 	async get(req, res) {
