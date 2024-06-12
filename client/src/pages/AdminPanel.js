@@ -3,6 +3,7 @@ import CreateSize from '../components/modals/CreateSize'
 import CreateBrand from '../components/modals/CreateBrand'
 import CreateProduct from '../components/modals/CreateProduct'
 import CreateColor from '../components/modals/CreateColor'
+import CreateSeason from '../components/modals/CreateSeason'
 import CreateMaterial from '../components/modals/CreateMaterial'
 
 const AdminPanel = () => {
@@ -11,6 +12,7 @@ const AdminPanel = () => {
 	const [productVisible, setProductVisible] = useState(false)
 	const [colorVisible, setColorVisible] = useState(false)
 	const [materialVisible, setMaterialVisible] = useState(false)
+	const [seasonVisible, setSeasonVisible] = useState(false)
 
 	const openSizeModal = () => {
 		setSizeVisible(true)
@@ -18,6 +20,7 @@ const AdminPanel = () => {
 		setProductVisible(false)
 		setColorVisible(false)
 		setMaterialVisible(false)
+		setSeasonVisible(false)
 	}
 
 	const openBrandModal = () => {
@@ -26,6 +29,7 @@ const AdminPanel = () => {
 		setProductVisible(false)
 		setColorVisible(false)
 		setMaterialVisible(false)
+		setSeasonVisible(false)
 	}
 
 	const openProductModal = () => {
@@ -34,6 +38,7 @@ const AdminPanel = () => {
 		setProductVisible(true)
 		setColorVisible(false)
 		setMaterialVisible(false)
+		setSeasonVisible(false)
 	}
 
 	const openColorModal = () => {
@@ -42,6 +47,7 @@ const AdminPanel = () => {
 		setProductVisible(false)
 		setColorVisible(true)
 		setMaterialVisible(false)
+		setSeasonVisible(false)
 	}
 
 	const openMaterialModal = () => {
@@ -50,6 +56,15 @@ const AdminPanel = () => {
 		setProductVisible(false)
 		setColorVisible(false)
 		setMaterialVisible(true)
+		setSeasonVisible(false)
+	}
+	const openSeasonModal = () => {
+		setSizeVisible(false)
+		setBrandVisible(false)
+		setProductVisible(false)
+		setColorVisible(false)
+		setMaterialVisible(false)
+		setSeasonVisible(true)
 	}
 
 	const closeModal = () => {
@@ -58,6 +73,7 @@ const AdminPanel = () => {
 		setProductVisible(false)
 		setColorVisible(false)
 		setMaterialVisible(false)
+		setSeasonVisible(false)
 	}
 
 	return (
@@ -77,11 +93,15 @@ const AdminPanel = () => {
 			<button className='button-custom-admin' onClick={openMaterialModal}>
 				Добавить материал
 			</button>
+			<button className='button-custom-admin' onClick={openSeasonModal}>
+				Добавить сезон
+			</button>
 			<CreateSize isOpen={sizeVisible} onClose={closeModal} />
 			<CreateBrand isOpen={brandVisible} onClose={closeModal} />
 			<CreateProduct isOpen={productVisible} onClose={closeModal} />
 			<CreateColor isOpen={colorVisible} onClose={closeModal} />
 			<CreateMaterial isOpen={materialVisible} onClose={closeModal} />
+			<CreateSeason isOpen={seasonVisible} onClose={closeModal} />
 		</main>
 	)
 }

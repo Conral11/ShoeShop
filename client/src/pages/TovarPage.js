@@ -4,7 +4,7 @@ import {
 	fetchOneTovar,
 	createBasketProduct,
 	createFavorites,
-	fetchFavorites,
+	/*fetchFavorites,*/
 } from '../http/productAPI'
 import { observer } from 'mobx-react-lite'
 import '../css/Main.css'

@@ -16,6 +16,10 @@ export const createColor = async (color) => {
 	const { data } = await $authHost.post('api/colors', color)
 	return data
 }
+export const createSeason = async (season) => {
+	const { data } = await $authHost.post('api/seasons', season)
+	return data
+}
 export const createPol = async (pol) => {
 	const { data } = await $authHost.post('api/pols', pol)
 	return data
