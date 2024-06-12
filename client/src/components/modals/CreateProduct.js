@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import {
 	createTovars,
-	fetchBrand,
+	fetchBrend,
 	fetchColor,
+	fetchSeason,
 	fetchMaterial,
 	fetchPol,
 	fetchSize,
@@ -12,20 +13,23 @@ const CreateProduct = ({ isOpen, onClose }) => {
 	const [name, setName] = useState('')
 	const [price, setPrice] = useState('')
 	const [image, setImage] = useState('')
-	const [selectedBrand, setSelectedBrand] = useState('')
+	const [selectedBrend, setSelectedBrend] = useState('')
 	const [selectedColor, setSelectedColor] = useState('')
+	const [SelectedSeason, setSelectedSeason] = useState('')
 	const [selectedMaterial, setSelectedMaterial] = useState('')
 	const [selectedPol, setSelectedPol] = useState('')
 	const [selectedSize, setSelectedSize] = useState('')
-	const [brands, setBrands] = useState([])
+	const [brends, setBrends] = useState([])
 	const [colors, setColors] = useState([])
+	const [seasons, setSeasons] = useState([])
 	const [materials, setMaterials] = useState([])
 	const [pols, setPols] = useState([])
 	const [sizes, setSizes] = useState([])
 
 	useEffect(() => {
-		fetchBrand().then((data) => setBrands(data))
+		fetchBrend().then((data) => setBrends(data))
 		fetchColor().then((data) => setColors(data))
+		fetchSeason().then((data) => setSeasons(data))
 		fetchMaterial().then((data) => setMaterials(data))
 		fetchPol().then((data) => setPols(data))
 		fetchSize().then((data) => setSizes(data))
@@ -36,8 +40,9 @@ const CreateProduct = ({ isOpen, onClose }) => {
 			name,
 			price,
 			image,
-			brendId: selectedBrand,
+			brendId: selectedBrend,
 			colorId: selectedColor,
+			seasonId: SelectedSeason,
 			materialId: selectedMaterial,
 			polId: selectedPol,
 			sizeId: selectedSize,
@@ -47,8 +52,9 @@ const CreateProduct = ({ isOpen, onClose }) => {
 				setName('')
 				setPrice('')
 				setImage('')
-				setSelectedBrand('')
+				setSelectedBrend('')
 				setSelectedColor('')
+				setSelectedSeason('')
 				setSelectedMaterial('')
 				setSelectedPol('')
 				setSelectedSize('')
@@ -69,7 +75,7 @@ const CreateProduct = ({ isOpen, onClose }) => {
 				<span className="close-button" onClick={onClose}>
 					&times;
 				</span>
-				<h2 style={{ textAlign: 'center' }} className='big-title'>
+				<h2 style={{ textAlign: 'center' }} className='big-title-admin'>
 					Добавить продукт
 				</h2>
 				<input
@@ -92,13 +98,13 @@ const CreateProduct = ({ isOpen, onClose }) => {
 				/>
 				<select
 					className='input-custom-dark'
-					value={selectedBrand}
-					onChange={(e) => setSelectedBrand(e.target.value)}
+					value={selectedBrend}
+					onChange={(e) => setSelectedBrend(e.target.value)}
 				>
 					<option value=''>Выберите бренд</option>
-					{brands.map((brand) => (
-						<option key={brand.id} value={brand.id}>
-							{brand.name}
+					{brends.map((brend) => (
+						<option key={brend.id} value={brend.id}>
+							{brend.name}
 						</option>
 					))}
 				</select>
@@ -111,6 +117,18 @@ const CreateProduct = ({ isOpen, onClose }) => {
 					{colors.map((color) => (
 						<option key={color.id} value={color.id}>
 							{color.name}
+						</option>
+					))}
+				</select>
+				<select
+					className='input-custom-dark'
+					value={SelectedSeason}
+					onChange={(e) => setSelectedSeason(e.target.value)}
+				>
+					<option value=''>Выберите сезон</option>
+					{seasons.map((season) => (
+						<option key={season.id} value={season.id}>
+							{season.name}
 						</option>
 					))}
 				</select>

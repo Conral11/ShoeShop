@@ -4,7 +4,7 @@ import Tovar from '../components/Tovar/Tovar'
 import Filter from '../components/Filter/FilterCatalog'
 import { observer } from 'mobx-react-lite'
 import {
-	fetchBrand,
+	fetchBrend,
 	fetchSize,
 	fetchTovars,
 	fetchColor,
@@ -17,7 +17,7 @@ import Pagination from '../components/Pagination/Pagination'
 const Catalog = observer(() => {
 	const { tovar } = useContext(Context)
 	useEffect(() => {
-		fetchBrand().then((data) => tovar.setBrend(data))
+		fetchBrend().then((data) => tovar.setBrend(data))
 		fetchColor().then((data) => tovar.setColor(data))
 		fetchSize().then((data) => tovar.setSize(data))
 		fetchPol().then((data) => tovar.setPol(data))

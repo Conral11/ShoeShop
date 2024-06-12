@@ -2,7 +2,7 @@ import React from 'react'
 import '../../css/Main.css'
 import trash from '../../img/basket/trash.svg'
 import fuv from '../../img/header/header-button-image2.jpg'
-import { removeBasketTovar, fetchOneProduct } from '../../http/productAPI'
+import { removeBasketTovar } from '../../http/productAPI'
 
 const BasketTovar = ({ tovar, tovarDetails, onRemove }) => {
 	const handleDecreaseQuantity = async () => {
@@ -35,7 +35,7 @@ const BasketTovar = ({ tovar, tovarDetails, onRemove }) => {
 					class='basket_img_k_l'
 					onClick={handleDecreaseQuantity}
 					src={trash}
-					alt='Мусоорка'
+					alt='Мусорка'
 				/>
 				<img class='basket_img_k_l' src={fuv} alt='Лайк' />
 			</div>

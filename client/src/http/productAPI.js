@@ -8,8 +8,8 @@ export const createSize = async (size) => {
 	const { data } = await $authHost.post('api/sizes', size)
 	return data
 }
-export const createBrand = async (brand) => {
-	const { data } = await $authHost.post('api/brands', brand)
+export const createBrend = async (brend) => {
+	const { data } = await $authHost.post('api/brends', brend)
 	return data
 }
 export const createColor = async (color) => {
@@ -48,7 +48,7 @@ export const fetchSeason = async () => {
 	const { data } = await $host.get('/api/seasons')
 	return data
 }
-export const fetchBrand = async () => {
+export const fetchBrend = async () => {
 	const { data } = await $host.get('/api/brends')
 	return data
 }

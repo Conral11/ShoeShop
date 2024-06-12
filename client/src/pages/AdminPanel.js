@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import CreateSize from '../components/modals/CreateSize'
-import CreateBrand from '../components/modals/CreateBrand'
+import CreateBrend from '../components/modals/CreateBrend'
 import CreateProduct from '../components/modals/CreateProduct'
 import CreateColor from '../components/modals/CreateColor'
 import CreateSeason from '../components/modals/CreateSeason'
@@ -8,7 +8,7 @@ import CreateMaterial from '../components/modals/CreateMaterial'
 
 const AdminPanel = () => {
 	const [sizeVisible, setSizeVisible] = useState(false)
-	const [brandVisible, setBrandVisible] = useState(false)
+	const [brendVisible, setBrendVisible] = useState(false)
 	const [productVisible, setProductVisible] = useState(false)
 	const [colorVisible, setColorVisible] = useState(false)
 	const [materialVisible, setMaterialVisible] = useState(false)
@@ -16,16 +16,16 @@ const AdminPanel = () => {
 
 	const openSizeModal = () => {
 		setSizeVisible(true)
-		setBrandVisible(false)
+		setBrendVisible(false)
 		setProductVisible(false)
 		setColorVisible(false)
 		setMaterialVisible(false)
 		setSeasonVisible(false)
 	}
 
-	const openBrandModal = () => {
+	const openBrendModal = () => {
 		setSizeVisible(false)
-		setBrandVisible(true)
+		setBrendVisible(true)
 		setProductVisible(false)
 		setColorVisible(false)
 		setMaterialVisible(false)
@@ -34,7 +34,7 @@ const AdminPanel = () => {
 
 	const openProductModal = () => {
 		setSizeVisible(false)
-		setBrandVisible(false)
+		setBrendVisible(false)
 		setProductVisible(true)
 		setColorVisible(false)
 		setMaterialVisible(false)
@@ -43,7 +43,7 @@ const AdminPanel = () => {
 
 	const openColorModal = () => {
 		setSizeVisible(false)
-		setBrandVisible(false)
+		setBrendVisible(false)
 		setProductVisible(false)
 		setColorVisible(true)
 		setMaterialVisible(false)
@@ -52,7 +52,7 @@ const AdminPanel = () => {
 
 	const openMaterialModal = () => {
 		setSizeVisible(false)
-		setBrandVisible(false)
+		setBrendVisible(false)
 		setProductVisible(false)
 		setColorVisible(false)
 		setMaterialVisible(true)
@@ -60,7 +60,7 @@ const AdminPanel = () => {
 	}
 	const openSeasonModal = () => {
 		setSizeVisible(false)
-		setBrandVisible(false)
+		setBrendVisible(false)
 		setProductVisible(false)
 		setColorVisible(false)
 		setMaterialVisible(false)
@@ -69,7 +69,7 @@ const AdminPanel = () => {
 
 	const closeModal = () => {
 		setSizeVisible(false)
-		setBrandVisible(false)
+		setBrendVisible(false)
 		setProductVisible(false)
 		setColorVisible(false)
 		setMaterialVisible(false)
@@ -81,7 +81,7 @@ const AdminPanel = () => {
 			<button className='button-custom-admin' onClick={openSizeModal}>
 				Добавить размер
 			</button>
-			<button className='button-custom-admin' onClick={openBrandModal}>
+			<button className='button-custom-admin' onClick={openBrendModal}>
 				Добавить бренд
 			</button>
 			<button className='button-custom-admin' onClick={openProductModal}>
@@ -97,7 +97,7 @@ const AdminPanel = () => {
 				Добавить сезон
 			</button>
 			<CreateSize isOpen={sizeVisible} onClose={closeModal} />
-			<CreateBrand isOpen={brandVisible} onClose={closeModal} />
+			<CreateBrend isOpen={brendVisible} onClose={closeModal} />
 			<CreateProduct isOpen={productVisible} onClose={closeModal} />
 			<CreateColor isOpen={colorVisible} onClose={closeModal} />
 			<CreateMaterial isOpen={materialVisible} onClose={closeModal} />

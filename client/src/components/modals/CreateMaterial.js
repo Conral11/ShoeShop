@@ -21,7 +21,7 @@ const CreateMaterial = ({ isOpen, onClose }) => {
 				<span className="close-button" onClick={onClose}>
 					&times;
 				</span>
-				<h2 style={{ textAlign: 'center' }} className='big-title'>
+				<h2 style={{ textAlign: 'center' }} className='big-title-admin'>
 					Добавить материал
 				</h2>
 				<input

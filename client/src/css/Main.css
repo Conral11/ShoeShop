@@ -1168,6 +1168,12 @@ footer a {
 	font-size: 24px;
 }
 
+.big-title-admin {
+	text-align: center;
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
 .input-custom-dark {
 	width: 100%;
 	padding: 10px;
