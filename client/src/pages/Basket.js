@@ -23,6 +23,13 @@ const Basket = () => {
 	const [name, setName] = useState('')
 	const [selectedTovars, setSelectedTovars] = useState({})
 
+	const tokens = localStorage.getItem('token')
+	if (!token) {
+		throw new Error('Token not found')
+	}
+	const decodedToken = jwtDecode(tokens)
+	const userId = decodedToken.id
+
 	const toggleDeliverySection = () => {
 		setDeliveryVisible(!isDeliveryVisible)
 	}
@@ -61,7 +68,7 @@ const Basket = () => {
 
 	useEffect(() => {
 		const loadBasket = async () => {
-			const basketProducts = await fetchBasket()
+			const basketProducts = await fetchBasket(userId)
 			setTovar(basketProducts)
 
 			const details = await Promise.all(

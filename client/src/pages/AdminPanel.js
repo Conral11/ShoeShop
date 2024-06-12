@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { jwtDecode } from 'jwt-decode'
+import { Navigate } from 'react-router-dom'
 import CreateSize from '../components/modals/CreateSize'
 import CreateBrend from '../components/modals/CreateBrend'
 import CreateProduct from '../components/modals/CreateProduct'
@@ -7,6 +9,40 @@ import CreateSeason from '../components/modals/CreateSeason'
 import CreateMaterial from '../components/modals/CreateMaterial'
 
 const AdminPanel = () => {
+	const [isAdmin, setIsAdmin] = useState(false)
+	const [loading, setLoading] = useState(true) // изначально ставим true
+
+	useEffect(() => {
+		const fetchUserInfo = async () => {
+			setLoading(true)
+			try {
+				const token = localStorage.getItem('token')
+				console.log('Token:', token) // отладочное сообщение
+				if (!token) {
+					console.error('Token not found')
+					setIsAdmin(false)
+					return
+				}
+				const decodedToken = jwtDecode(token)
+				console.log('Decoded token:', decodedToken) // отладочное сообщение
+				const roleId = decodedToken.roleId
+
+				if (roleId === 1) {
+					setIsAdmin(true)
+				} else {
+					setIsAdmin(false)
+				}
+			} catch (error) {
+				console.error('Failed to fetch user info:', error)
+				setIsAdmin(false)
+			} finally {
+				setLoading(false)
+			}
+		}
+
+		fetchUserInfo()
+	}, [])
+
 	const [sizeVisible, setSizeVisible] = useState(false)
 	const [brendVisible, setBrendVisible] = useState(false)
 	const [productVisible, setProductVisible] = useState(false)
@@ -74,6 +110,14 @@ const AdminPanel = () => {
 		setColorVisible(false)
 		setMaterialVisible(false)
 		setSeasonVisible(false)
+	}
+
+	if (loading) {
+		return <main className='main container'>загрузка...</main>
+	}
+
+	if (!isAdmin) {
+		return <Navigate to='/' />
 	}
 
 	return (

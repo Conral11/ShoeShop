@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken')
 const { User, Basket } = require('../models/models')
 const e = require('express')
 
-const generateJWT = (id, telephone, role, email) => {
-	return jwt.sign({ id, telephone, role, email }, process.env.SECRET_KEY, {
+const generateJWT = (id, telephone, roleId, email) => {
+	return jwt.sign({ id, telephone, roleId, email }, process.env.SECRET_KEY, {
 		expiresIn: '24h',
 	})
 }

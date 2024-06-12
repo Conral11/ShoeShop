@@ -34,8 +34,12 @@ class BasketProductController {
 	}
 
 	async get(req, res) {
+		const { basketId } = req.params
+		if (!basketId || isNaN(basketId)) {
+			return res.status(400).json({ error: 'Invalid basketId' })
+		}
 		try {
-			const basketTovar = await BasketTovar.findAll()
+			const basketTovar = await BasketTovar.findAll({ where: { basketId } })
 			return res.json(basketTovar)
 		} catch (error) {
 			console.error('Ошибка при получении товаров из корзины', error)

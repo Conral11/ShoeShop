@@ -4,12 +4,13 @@ import {
 	fetchOneTovar,
 	createBasketProduct,
 	createFavorites,
-	/*fetchFavorites,*/
 } from '../http/productAPI'
 import { observer } from 'mobx-react-lite'
 import '../css/Main.css'
-import { jwtDecode } from 'jwt-decode' // Import correctly
+import { jwtDecode } from 'jwt-decode'
 import { Context } from '../index'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 const TovarPage = observer(() => {
 	const { user } = useContext(Context)
 
@@ -34,21 +35,19 @@ const TovarPage = observer(() => {
 	}, [id])
 
 	const handleAddToCart = () => {
-		const token = localStorage.getItem('token')
-		if (!token) {
-			console.error('Пользователь не авторизован')
-			return
+		if (user.isAuth) {
+			const token = localStorage.getItem('token')
+			if (!token) {
+				toast.error('Пользователь не авторизован')
+				return
+			}
+			const decodedToken = jwtDecode(token)
+			const userId = decodedToken.id
+			toast.info('Товар добавлен в корзину')
+			createBasketProduct({ basketId: userId, tovarId: id })
+		} else {
+			toast.error('Авторизуйтесь!')
 		}
-		const decodedToken = jwtDecode(token)
-		const userId = decodedToken.id
-		console.log(userId)
-		createBasketProduct({ basketId: userId, tovarId: id })
-			.then(() => {
-				console.log('Товар добавлен в корзину')
-			})
-			.catch((error) => {
-				console.error('Ошибка при добавлении товара в корзину:', error)
-			})
 	}
 	const handleAddTofavorites = async () => {
 		if (!isAddingTofavorites) {
@@ -58,20 +57,19 @@ const TovarPage = observer(() => {
 				try {
 					const token = localStorage.getItem('token')
 					if (!token) {
-						console.error('Пользователь не авторизован')
+						toast.error('Пользователь не авторизован')
 						return
 					}
 					const decodedToken = jwtDecode(token)
 					const userId = decodedToken.id
-					console.log(userId)
 
 					await createFavorites(id, userId)
-					console.log('Товар добавлен в избранное.')
+					toast.info('Товар добавлен в избранное')
 				} catch (error) {
-					console.log('Ошибка при добавлении в избранное.')
+					toast.error('Ошибка при добавлении в избранное.')
 				}
 			} else {
-				console.log('Авторизуйтесь!')
+				toast.error('Авторизуйтесь!')
 			}
 
 			setIsAddingTofavorites(false)
@@ -144,6 +142,7 @@ const TovarPage = observer(() => {
 					</button>
 				</div>
 			</section>
+			<ToastContainer />
 		</main>
 	)
 })

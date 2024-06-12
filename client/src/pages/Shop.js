@@ -53,8 +53,8 @@ const Shop = () => {
 			<div className='body-conteiner-img' style={{ position: 'relative' }}>
 				<img src={bodyConteinerImg} alt='Описание картинки' />
 				<div className='text-body-conteiner-img'>
-					<h1 classNameName='h1'>Современные и качественные</h1>
-					<h2 classNameName='h2'> ФИРМЕННЫЕ КРОССОВКИ</h2>
+					<h1 className='h1'>Современные и качественные</h1>
+					<h2 className='h2'> ФИРМЕННЫЕ КРОССОВКИ</h2>
 					<p>Стиль</p>
 					<p>Постоянное обновление ассортимента</p>
 					<p>Удобство и высокое качество</p>

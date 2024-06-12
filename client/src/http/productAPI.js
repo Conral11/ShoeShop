@@ -101,8 +101,8 @@ export const fetchOneTovar = async (id) => {
 	return data
 }
 
-export const fetchBasket = async () => {
-	const { data } = await $host.get('/api/basketTovars')
+export const fetchBasket = async (basketId) => {
+	const { data } = await $authHost.get(`/api/basketTovars/${basketId}`)
 	return data
 }
 
