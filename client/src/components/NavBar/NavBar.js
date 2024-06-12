@@ -87,11 +87,13 @@ const NavBar = observer(() => {
 									Сравнение
 								</NavLink>
 							</li>
-							<li>
-								<NavLink className='menu-nav-text' to='/admin' onClick={closeMenu}>
-									Панель админа
-								</NavLink>
-							</li>
+							{user.isAdmin && ( // Add this condition to show the "Admin Panel" menu only if the user is an admin
+								<li>
+									<NavLink className='menu-nav-text' to='/admin' onClick={closeMenu}>
+										Панель админа
+									</NavLink>
+								</li>
+							)}
 						</ul>
 					</nav>
 				</div>
@@ -130,15 +132,6 @@ const NavBar = observer(() => {
 					)}
 				</div>
 			</header>
-			{isSearchOpen && (
-				<div className='search-overlay'>
-					<input type='text' placeholder='Введите название товара' onChange={handleNameChange} />
-					<NavLink class="Poisk" to={'/catalog'} onClick={handleFilter}>
-						Поиск
-					</NavLink>
-					<button onClick={closeSearch}>X</button>
-				</div>
-			)}
 		</section>
 	);
 });
