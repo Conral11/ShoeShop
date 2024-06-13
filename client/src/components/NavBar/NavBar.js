@@ -8,22 +8,16 @@ import Counts from '../../img/header/counts.svg'
 import Menu from '../../img/header/menu.jpg'
 import Logo from '../../img/header/logo.jpg'
 import Search from '../../img/header/Search.jpg'
-import { jwtDecode } from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode' // поправил импорт
 
 const NavBar = observer(() => {
 	const { user } = useContext(Context)
-	const { tovar } = useContext(Context)
-	const [searchTerm, setSearchTerm] = useState('')
-	const [name, setName] = useState('')
-	const [isSearchOpen, setIsSearchOpen] = useState(false)
-	const [isMenuOpen, setIsMenuOpen] = useState(false)
-	const token = localStorage.getItem('token')
+
 	const [isAdmin, setIsAdmin] = useState(false)
 	const [loading, setLoading] = useState(true) // изначально ставим true
 
 	useEffect(() => {
 		const fetchUserInfo = async () => {
-			setLoading(true)
 			try {
 				const token = localStorage.getItem('token')
 				console.log('Token:', token) // отладочное сообщение
@@ -52,6 +46,12 @@ const NavBar = observer(() => {
 		fetchUserInfo()
 	}, [])
 
+	const { tovar } = useContext(Context)
+	const [searchTerm, setSearchTerm] = useState('')
+	const [name, setName] = useState('')
+	const [isSearchOpen, setIsSearchOpen] = useState(false)
+	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const token = localStorage.getItem('token')
 	const handleNameChange = (e) => {
 		setName(e.target.value)
 	}
@@ -63,6 +63,7 @@ const NavBar = observer(() => {
 	const logOut = () => {
 		user.setUser({})
 		user.setIsAuth(false)
+		localStorage.removeItem('token') // добавил удаление токена при выходе
 	}
 
 	const openSearch = () => {
@@ -80,9 +81,11 @@ const NavBar = observer(() => {
 	const closeMenu = () => {
 		setIsMenuOpen(false)
 	}
+
 	if (loading) {
-		return <main className='main container'>загрузка...</main>
+		return <main className='main container'>Загрузка...</main>
 	}
+
 	return (
 		<section>
 			<header className='header-container'>
@@ -91,12 +94,11 @@ const NavBar = observer(() => {
 						<img
 							src={Menu}
 							alt=''
-							className={`Меню ${isMenuOpen ? 'rotated' : ''}`}
+							className={`menu ${isMenuOpen ? 'rotated' : ''}`}
 							onClick={toggleMenu}
 						/>
 						<p>Меню</p>
 					</NavLink>
-
 
 					<nav className={`menu-nav ${isMenuOpen ? 'show' : ''}`}>
 						<ul className='menu-nav2'>
@@ -150,7 +152,7 @@ const NavBar = observer(() => {
 									Сравнение
 								</NavLink>
 							</li>
-							{isAdmin ?? (
+							{isAdmin && ( // Проверка на администратора
 								<li>
 									<NavLink
 										className='menu-nav-text'
@@ -185,7 +187,7 @@ const NavBar = observer(() => {
 					<NavLink to='/basket'>
 						<img src={Bag} alt='Корзина' />
 					</NavLink>
-					<NavLink to={'favorites/'}>
+					<NavLink to={'/favorites/'}>
 						<img src={Counts} alt='Понравившееся' />
 					</NavLink>
 					{user.isAuth ? (
