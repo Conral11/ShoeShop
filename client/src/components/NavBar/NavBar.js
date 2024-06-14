@@ -90,7 +90,7 @@ const NavBar = observer(() => {
 		<section>
 			<header className='header-container'>
 				<div className='header-container-m-g'>
-					<NavLink to='/' onClick={toggleMenu}>
+					<NavLink onClick={toggleMenu}>
 						<img
 							src={Menu}
 							alt=''
