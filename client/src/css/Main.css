@@ -9,6 +9,14 @@
 	align-items: center;
 }
 
+.container2 {
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 15px 0;
+	align-items: center;
+}
+
+
 .main {
 	margin: 24px 0;
 }
@@ -288,11 +296,6 @@ h6 {
 	min-width: 150px;
 	height: auto;
 }
-
-/* .header-button-login {
-	border-radius: 10px;
-	padding: 10px 20px;
-} */
 
 .header-container-button {
 	display: -webkit-box;

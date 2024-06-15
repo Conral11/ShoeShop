@@ -121,7 +121,7 @@ const AdminPanel = () => {
 	}
 
 	return (
-		<main className='main container'>
+		<main className='main container2 basket'>
 			<button className='button-custom-admin' onClick={openSizeModal}>
 				Добавить размер
 			</button>
