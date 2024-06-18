@@ -243,17 +243,12 @@ const Basket = () => {
 												Почта России
 											</label>
 											{isDeliveryVisible && (
-												<div id='delivery' className='toggle-content'>
+												<div id='delivery' className='toggle-content' style={{ padding: '10px' }}>
 													<input
 														type='text'
 														value={name}
 														onChange={(e) => setName(e.target.value)}
 														placeholder='ФИО'
-													/>
-													<AddressSuggestions
-														token={token}
-														value={address}
-														onChange={setAddress}
 													/>
 													<input
 														type='text'
@@ -262,8 +257,15 @@ const Basket = () => {
 														value={telephone}
 														onChange={(e) => setTelephone(e.target.value)}
 													/>
+													<p className='P_bask'>Адрес:</p>
+													<AddressSuggestions
+														token={token}
+														value={address}
+														onChange={setAddress}
+													/>
 												</div>
 											)}
+
 										</div>
 										<div className='form-section'>
 											<input
@@ -278,9 +280,8 @@ const Basket = () => {
 											</label>
 											<div
 												id='order'
-												className={`toggle-content ${
-													isOrderVisible ? 'show' : 'hidden'
-												}`}
+												className={`toggle-content ${isOrderVisible ? 'show' : 'hidden'
+													}`}
 											>
 												<input
 													type='text'

@@ -1227,6 +1227,11 @@ input[type=text] {
 	border: 1px solid #ccc;
 }
 
+.P_bask {
+	font-size: small;
+	padding: 10px;
+}
+
 button[type=submit] {
 	background-color: pink;
 	color: white;
