@@ -29,6 +29,9 @@ const Shop = () => {
 	const handleFilter = (pol) => {
 		tovar.setSelectedPol(pol.id)
 	}
+	const handleFilter2 = (season) => {
+		tovar.setSelectedSeason(season.id)
+	}
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -137,9 +140,16 @@ const Shop = () => {
 					<img src={colectionWinter} alt='Winter' />
 					<div className='body-left-card-text'>
 						<p className='season'>Зима</p>
-						<a className='custom-link' href=''>
-							смотреть
-						</a>
+						<NavLink
+							to='/catalog'
+							key={tovar.season.id}
+							onClick={() => handleFilter2(tovar.season[0])}
+						>
+							<a className='custom-link' href=''>
+								смотреть
+							</a>
+						</NavLink>
+
 					</div>
 				</div>
 				<div className='body-collection'>
