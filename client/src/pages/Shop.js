@@ -221,6 +221,7 @@ const Shop = () => {
 					</div>
 				</div>
 			</div>
+			{/* 
 			<div id='sectionMassag' className='body-conteiner-connection'>
 				<div className='image-connection'>
 					<img src={connectionShoes} alt='Stylish Shoes' />
@@ -236,6 +237,7 @@ const Shop = () => {
 					</form>
 				</div>
 			</div>
+			*/}
 		</main>
 	)
 }
