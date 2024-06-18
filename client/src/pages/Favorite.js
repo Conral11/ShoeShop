@@ -75,7 +75,7 @@ const Favorite = () => {
 	}
 
 	const handleRemoveProduct = async (tovarIdToRemove) => {
-		console.log('Product ID to remove:', tovarIdToRemove) // Log the tovarIdToRemove for debugging
+		console.log('Product ID to remove:', tovarIdToRemove)
 		try {
 			const token = localStorage.getItem('token')
 			if (!token) {
@@ -126,7 +126,7 @@ const Favorite = () => {
 					)}
 				</div>
 			) : (
-				<div>не зарегистрированны</div>
+				<div>Авторизуйтесь...</div>
 			)}
 		</main>
 	)

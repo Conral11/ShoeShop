@@ -20,10 +20,15 @@ import actyaleShoes from '../img/body/actyale/credctva.jpg'
 import connectionShoes from '../img/body/connection/connection.jpg'
 
 import '../css/Main.css'
+import Gils from '../components/Gils/Gils'
 
 const Shop = () => {
 	const { tovar } = useContext(Context)
 	const [tovars, setTovars] = useState([])
+
+	const handleFilter = (pol) => {
+		tovar.setSelectedPol(pol.id)
+	}
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -78,21 +83,46 @@ const Shop = () => {
 			<section className='body-conteiner-category'>
 				<div className='body-category'>
 					<img src={categoryAcsesyar} alt='Аксессуары' className='img' />
-					<h2>Аксессуары</h2>
+					<NavLink
+						to='/catalog'
+						key={tovar.pol.id}
+						onClick={() => handleFilter(tovar.pol[2])}
+					>
+						<h2>Аксессуары</h2>
+					</NavLink>
 				</div>
 				<div className='body-category'>
 					<img src={categoryGirl} alt='Женщинам' />
-					<h2>Женщинам</h2>
+					<NavLink
+						to='/catalog'
+						key={tovar.pol.id}
+						onClick={() => handleFilter(tovar.pol[0])}
+					>
+						<h2>Женщинам</h2>
+					</NavLink>
 				</div>
 				<div className='body-category'>
 					<img src={categoryMan} alt='Мужчинам' />
-					<h2>Мужчинам</h2>
+					<NavLink
+						to='/catalog'
+						key={tovar.pol.id}
+						onClick={() => handleFilter(tovar.pol[1])}
+					>
+						<h2>Мужчинам</h2>
+					</NavLink>
 				</div>
 				<div className='body-category'>
 					<img src={categorySport} alt='Спорт' />
-					<h2>Спорт</h2>
+					<NavLink
+						to='/catalog'
+						key={tovar.pol.id}
+						onClick={() => handleFilter(tovar.pol[4])}
+					>
+						<h2>Спорт</h2>
+					</NavLink>
 				</div>
 			</section>
+			<Gils />
 			<h2 id='sectionNew' className='category big-title'>
 				Новинки
 			</h2>
@@ -143,18 +173,31 @@ const Shop = () => {
 					<img src={actyaleBags} alt='Bags' />
 					<div className='body-collection-card-text'>
 						<p>Эффектные сумки на любой день</p>
-						<a className='custom-link' href=''>
-							смотреть
-						</a>
+						<NavLink
+							to='/catalog'
+							key={tovar.pol.id}
+							onClick={() => handleFilter(tovar.pol[2])}
+						>
+							<a className='custom-link' href=''>
+								смотреть
+							</a>
+						</NavLink>
+
 					</div>
 				</div>
 				<div className='body-actyale'>
 					<img src={actyaleShoes} alt='Shoes' />
 					<div className='body-left-card-text'>
 						<p>Всегда чистая и удобная обувь</p>
-						<a className='custom-link' href=''>
-							смотреть
-						</a>
+						<NavLink
+							to='/catalog'
+							key={tovar.pol.id}
+							onClick={() => handleFilter(tovar.pol[3])}
+						>
+							<a className='custom-link'>
+								смотреть
+							</a>
+						</NavLink>
 					</div>
 				</div>
 			</div>
