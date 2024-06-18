@@ -11,9 +11,12 @@ const Brends = observer(() => {
 		tovar.setSelectedBrend(brand.id)
 	}
 
+	// Exclude 6 brands
+	const excludedBrands = [6]
+
 	return (
-		<div className='conteiner-brends'>
-			{tovar.brend.map((brand) => (
+		<div className='conteiner-brends' style={{ overflowX: 'scroll', whiteSpace: 'nowrap' }}>
+			{tovar.brend.filter(brand => !excludedBrands.includes(brand.id)).map((brand) => (
 				<NavLink
 					to='/catalog'
 					key={brand.id}
