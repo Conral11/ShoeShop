@@ -5,7 +5,7 @@ import { Context } from '../index'
 import { NavLink } from 'react-router-dom'
 
 import Brends from '../components/Brends/Brends'
-import { fetchTovars, fetchBrend } from '../http/productAPI'
+import { fetchTovars, fetchBrend, fetchPol } from '../http/productAPI'
 
 import categoryAcsesyar from '../img/body/category/category-acsesyar.jpg'
 import categoryMan from '../img/body/category/category-man.jpg'
@@ -17,7 +17,7 @@ import colectionAutumnString from '../img/body/collection/Autumn-Spring.jpg'
 import colectionSummer from '../img/body/collection/Summer.jpg'
 import actyaleBags from '../img/body/actyale/symki.jpg'
 import actyaleShoes from '../img/body/actyale/credctva.jpg'
-import connectionShoes from '../img/body/connection/connection.jpg'
+//import connectionShoes from '../img/body/connection/connection.jpg'
 
 import '../css/Main.css'
 
@@ -35,10 +35,9 @@ const Shop = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				// Получаем бестселлеры и новинки
 				const TovarData = await fetchTovars()
 				fetchBrend().then((data) => tovar.setBrend(data))
-				// Проверка данных и вывод в консоль для отладки
+				fetchPol().then((data) => tovar.setPol(data))
 				console.log('Bestsellers data:', TovarData)
 				if (TovarData && Array.isArray(TovarData.rows)) {
 					setTovars(TovarData.rows)
@@ -143,9 +142,9 @@ const Shop = () => {
 							key={tovar.season.id}
 							onClick={() => handleFilter2(tovar.season[2])}
 						>
-							<a className='custom-link' href=''>
+							<p className='custom-link' href=''>
 								смотреть
-							</a>
+							</p>
 						</NavLink>
 
 					</div>
@@ -159,9 +158,9 @@ const Shop = () => {
 							key={tovar.season.id}
 							onClick={() => handleFilter2(tovar.season[1])}
 						>
-							<a className='custom-link' href=''>
+							<p className='custom-link' href=''>
 								смотреть
-							</a>
+							</p>
 						</NavLink>
 					</div>
 				</div>
@@ -174,9 +173,9 @@ const Shop = () => {
 							key={tovar.season.id}
 							onClick={() => handleFilter2(tovar.season[0])}
 						>
-							<a className='custom-link' href=''>
+							<p className='custom-link' href=''>
 								смотреть
-							</a>
+							</p>
 						</NavLink>
 					</div>
 				</div>
@@ -198,9 +197,9 @@ const Shop = () => {
 							key={tovar.pol.id}
 							onClick={() => handleFilter(tovar.pol[2])}
 						>
-							<a className='custom-link' href=''>
+							<p className='custom-link' href=''>
 								смотреть
-							</a>
+							</p>
 						</NavLink>
 
 					</div>
@@ -214,9 +213,9 @@ const Shop = () => {
 							key={tovar.pol.id}
 							onClick={() => handleFilter(tovar.pol[3])}
 						>
-							<a className='custom-link'>
+							<p className='custom-link'>
 								смотреть
-							</a>
+							</p>
 						</NavLink>
 					</div>
 				</div>

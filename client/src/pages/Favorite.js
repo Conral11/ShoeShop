@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import {
 	fetchFavorites,
 	fetchOneTovar,
-	createFavorites,
+	//createFavorites,
 	removeFavorites,
 } from '../http/productAPI'
 import FavoritesTovar from '../components/FavoritesTovar/FavoritesTovar'
@@ -52,7 +52,7 @@ const Favorite = () => {
 		}
 	}, [user.users]) // Изменил зависимость на user.user
 
-	const handleAddfavorites = async (tovarId) => {
+	/*const handleAddfavorites = async (tovarId) => {
 		try {
 			const token = localStorage.getItem('token')
 			if (!token) {
@@ -72,7 +72,8 @@ const Favorite = () => {
 		} catch (error) {
 			console.error('Ошибка при добавлении в избранное:', error)
 		}
-	}
+
+	}*/
 
 	const handleRemoveProduct = async (tovarIdToRemove) => {
 		console.log('Product ID to remove:', tovarIdToRemove)

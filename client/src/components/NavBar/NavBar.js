@@ -47,11 +47,11 @@ const NavBar = observer(() => {
 	}, [])
 
 	const { tovar } = useContext(Context)
-	const [searchTerm, setSearchTerm] = useState('')
+	//const [searchTerm, setSearchTerm] = useState('')
 	const [name, setName] = useState('')
-	const [isSearchOpen, setIsSearchOpen] = useState(false)
+	//const [isSearchOpen, setIsSearchOpen] = useState(false)
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
-	const token = localStorage.getItem('token')
+	//const token = localStorage.getItem('token')
 	const handleNameChange = (e) => {
 		setName(e.target.value)
 	}
@@ -66,13 +66,13 @@ const NavBar = observer(() => {
 		localStorage.removeItem('token') // добавил удаление токена при выходе
 	}
 
-	const openSearch = () => {
+	/*const openSearch = () => {
 		setIsSearchOpen(true)
 	}
 
 	const closeSearch = () => {
 		setIsSearchOpen(false)
-	}
+	}*/
 
 	const toggleMenu = () => {
 		setIsMenuOpen(!isMenuOpen)
