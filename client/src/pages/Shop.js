@@ -20,7 +20,6 @@ import actyaleShoes from '../img/body/actyale/credctva.jpg'
 import connectionShoes from '../img/body/connection/connection.jpg'
 
 import '../css/Main.css'
-import Gils from '../components/Gils/Gils'
 
 const Shop = () => {
 	const { tovar } = useContext(Context)
@@ -125,7 +124,6 @@ const Shop = () => {
 					</NavLink>
 				</div>
 			</section>
-			<Gils />
 			<h2 id='sectionNew' className='category big-title'>
 				Новинки
 			</h2>
@@ -143,7 +141,7 @@ const Shop = () => {
 						<NavLink
 							to='/catalog'
 							key={tovar.season.id}
-							onClick={() => handleFilter2(tovar.season[0])}
+							onClick={() => handleFilter2(tovar.season[2])}
 						>
 							<a className='custom-link' href=''>
 								смотреть
@@ -156,18 +154,30 @@ const Shop = () => {
 					<img src={colectionAutumnString} alt='Autumn-Spring' />
 					<div className='body-left-card-text'>
 						<p className='season'>Осень - Весна</p>
-						<a className='custom-link' href=''>
-							смотреть
-						</a>
+						<NavLink
+							to='/catalog'
+							key={tovar.season.id}
+							onClick={() => handleFilter2(tovar.season[1])}
+						>
+							<a className='custom-link' href=''>
+								смотреть
+							</a>
+						</NavLink>
 					</div>
 				</div>
 				<div className='body-collection'>
 					<img src={colectionSummer} alt='Summer' />
 					<div className='body-left-card-text'>
 						<p className='season'>Лето</p>
-						<a className='custom-link' href=''>
-							смотреть
-						</a>
+						<NavLink
+							to='/catalog'
+							key={tovar.season.id}
+							onClick={() => handleFilter2(tovar.season[0])}
+						>
+							<a className='custom-link' href=''>
+								смотреть
+							</a>
+						</NavLink>
 					</div>
 				</div>
 			</section>

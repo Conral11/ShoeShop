@@ -110,6 +110,7 @@ const TovarPage = observer(() => {
 		material = { name: 'Материал не указан' },
 		color = { name: 'Цвет не указан' },
 		pol = { name: 'Цвет не указан' },
+		season = { name: 'Цвет не указан' },
 		size = '',
 	} = tovar
 
@@ -136,8 +137,12 @@ const TovarPage = observer(() => {
 							<td>{material.name}</td>
 						</tr>
 						<tr className='tableLine'>
-							<th>ПОЛ</th>
+							<th>Категория</th>
 							<td>{pol.name}</td>
+						</tr>
+						<tr className='tableLine'>
+							<th>Сезон</th>
+							<td>{season.name}</td>
 						</tr>
 						<tr className='tableLine'>
 							<th>Размерный ряд</th>
