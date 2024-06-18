@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import {
 	fetchOneTovar,
+	fetchBasket,
 	createBasketProduct,
 	createFavorites,
 } from '../http/productAPI'
@@ -34,7 +35,7 @@ const TovarPage = observer(() => {
 			})
 	}, [id])
 
-	const handleAddToCart = () => {
+	const handleAddToCart = async () => {
 		if (user.isAuth) {
 			const token = localStorage.getItem('token')
 			if (!token) {
@@ -43,8 +44,15 @@ const TovarPage = observer(() => {
 			}
 			const decodedToken = jwtDecode(token)
 			const userId = decodedToken.id
-			toast.info('Товар добавлен в корзину')
-			createBasketProduct({ basketId: userId, tovarId: id })
+			// Поиск товара в корзине
+			const basket = await fetchBasket(userId)
+			const basketTovar = basket.find((p) => p.tovarId === parseInt(id))
+			if (basketTovar) {
+				toast.info('Товар уже в корзине.')
+			} else {
+				toast.info('Товар добавлен в корзину')
+				createBasketProduct({ basketId: userId, tovarId: id })
+			}
 		} else {
 			toast.error('Авторизуйтесь!')
 		}
@@ -62,7 +70,14 @@ const TovarPage = observer(() => {
 					}
 					const decodedToken = jwtDecode(token)
 					const userId = decodedToken.id
-
+					// Поиск товара в корзине
+					const basket = await fetchBasket(userId)
+					const favoriteTovar = basket.find((p) => p.tovarId === parseInt(id))
+					if (favoriteTovar) {
+						toast.error('Товар уже в избранном.')
+						setIsAddingTofavorites(false)
+						return
+					}
 					await createFavorites(id, userId)
 					toast.info('Товар добавлен в избранное')
 				} catch (error) {

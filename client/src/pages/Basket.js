@@ -23,12 +23,42 @@ const Basket = () => {
 	const [name, setName] = useState('')
 	const [selectedTovars, setSelectedTovars] = useState({})
 
-	const tokens = localStorage.getItem('token')
-	if (!token) {
-		throw new Error('Token not found')
-	}
-	const decodedToken = jwtDecode(tokens)
-	const userId = decodedToken.id
+	useEffect(() => {
+		if (user.isAuth) {
+			const loadBasket = async () => {
+				const tokens = localStorage.getItem('token')
+				if (!tokens) {
+					throw new Error('Token not found')
+				}
+				const decodedToken = jwtDecode(tokens)
+				const userId = decodedToken.id
+
+				try {
+					const basketProducts = await fetchBasket(userId)
+					setTovar(basketProducts)
+
+					const details = await Promise.all(
+						basketProducts.map((tovar) => fetchOneTovar(tovar.tovarId))
+					)
+
+					const detailsMap = {}
+					details.forEach((detail) => {
+						detailsMap[detail.id] = detail
+					})
+
+					setTovarDetails(detailsMap)
+					setIsLoading(false)
+				} catch (error) {
+					console.error('Error loading basket:', error)
+					setIsLoading(false)
+				}
+			}
+
+			loadBasket()
+		} else {
+			setIsLoading(false)
+		}
+	}, [user])
 
 	const toggleDeliverySection = () => {
 		setDeliveryVisible(!isDeliveryVisible)
@@ -64,32 +94,6 @@ const Basket = () => {
 			}
 			return total
 		}, 0)
-	}
-
-	useEffect(() => {
-		const loadBasket = async () => {
-			const basketProducts = await fetchBasket(userId)
-			setTovar(basketProducts)
-
-			const details = await Promise.all(
-				basketProducts.map((tovar) => fetchOneTovar(tovar.tovarId))
-			)
-
-			const detailsMap = {}
-			details.forEach((detail) => {
-				detailsMap[detail.id] = detail
-			})
-
-			setTovarDetails(detailsMap)
-			setIsLoading(false)
-		}
-		loadBasket()
-	}, [user])
-
-	if (isLoading) {
-		return (
-			<div className='card container'>Загрузка. Подождите пожалуйста...</div>
-		)
 	}
 
 	const handleRemoveProduct = (productIdToRemove) => {
@@ -145,7 +149,11 @@ const Basket = () => {
 			alert(`Не удалось создать заказ: ${error.message}`)
 		}
 	}
-
+	if (isLoading) {
+		return (
+			<div className='card container'>Загрузка. Подождите пожалуйста...</div>
+		)
+	}
 	return (
 		<main className='basket container'>
 			<section className='basket_all'>
@@ -202,7 +210,7 @@ const Basket = () => {
 													<p>
 														{tovarDetails[tovarId]
 															? tovarDetails[tovarId].price
-															: 'Цена не найдена'}{' '}
+															: 'Цена не найдена'}
 														руб.
 													</p>
 												</span>
@@ -212,7 +220,9 @@ const Basket = () => {
 										<span className='basket_line'></span>
 										<div className='basket_text_all'>
 											<p>Итого</p>
-											<p>{getTotalPrice()} руб.</p>
+											<span className='basket_all_price'>
+												{getTotalPrice()}
+											</span>
 										</div>
 									</div>
 								</section>

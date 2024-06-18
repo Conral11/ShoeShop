@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Swiper from '../components/Swiper/Swiper'
-import '../css/Main.css'
+
+import { Context } from '../index'
 import { NavLink } from 'react-router-dom'
+
+import Brends from '../components/Brends/Brends'
+import { fetchTovars, fetchBrend } from '../http/productAPI'
+
 import categoryAcsesyar from '../img/body/category/category-acsesyar.jpg'
 import categoryMan from '../img/body/category/category-man.jpg'
 import categorySport from '../img/body/category/category-sport.jpg'
@@ -13,10 +18,11 @@ import colectionSummer from '../img/body/collection/Summer.jpg'
 import actyaleBags from '../img/body/actyale/symki.jpg'
 import actyaleShoes from '../img/body/actyale/credctva.jpg'
 import connectionShoes from '../img/body/connection/connection.jpg'
-import Brends from '../components/Brends/Brends'
-import { fetchTovars } from '../http/productAPI'
+
+import '../css/Main.css'
 
 const Shop = () => {
+	const { tovar } = useContext(Context)
 	const [tovars, setTovars] = useState([])
 
 	useEffect(() => {
@@ -24,7 +30,7 @@ const Shop = () => {
 			try {
 				// Получаем бестселлеры и новинки
 				const TovarData = await fetchTovars()
-
+				fetchBrend().then((data) => tovar.setBrend(data))
 				// Проверка данных и вывод в консоль для отладки
 				console.log('Bestsellers data:', TovarData)
 				if (TovarData && Array.isArray(TovarData.rows)) {
