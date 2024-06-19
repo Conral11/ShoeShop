@@ -5,6 +5,7 @@ import {
 	fetchBasket,
 	createBasketProduct,
 	createFavorites,
+	fetchFavorites,
 } from '../http/productAPI'
 import { observer } from 'mobx-react-lite'
 import '../css/Main.css'
@@ -71,7 +72,7 @@ const TovarPage = observer(() => {
 					const decodedToken = jwtDecode(token)
 					const userId = decodedToken.id
 					// Поиск товара в корзине
-					const basket = await fetchBasket(userId)
+					const basket = await fetchFavorites(userId)
 					const favoriteTovar = basket.find((p) => p.tovarId === parseInt(id))
 					if (favoriteTovar) {
 						toast.error('Товар уже в избранном.')
