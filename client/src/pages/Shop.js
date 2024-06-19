@@ -5,7 +5,7 @@ import { Context } from '../index'
 import { NavLink } from 'react-router-dom'
 
 import Brends from '../components/Brends/Brends'
-import { fetchTovars, fetchBrend, fetchPol } from '../http/productAPI'
+import { fetchTovars, fetchBrend, fetchPol, fetchSeason } from '../http/productAPI'
 
 import categoryAcsesyar from '../img/body/category/category-acsesyar.jpg'
 import categoryMan from '../img/body/category/category-man.jpg'
@@ -38,6 +38,7 @@ const Shop = () => {
 				const TovarData = await fetchTovars()
 				fetchBrend().then((data) => tovar.setBrend(data))
 				fetchPol().then((data) => tovar.setPol(data))
+				fetchSeason().then((data) => tovar.setSeason(data))
 				console.log('Bestsellers data:', TovarData)
 				if (TovarData && Array.isArray(TovarData.rows)) {
 					setTovars(TovarData.rows)

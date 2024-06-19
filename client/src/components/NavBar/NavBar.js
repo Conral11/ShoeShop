@@ -8,7 +8,7 @@ import Counts from '../../img/header/counts.svg'
 import Menu from '../../img/header/menu.jpg'
 import Logo from '../../img/header/logo.jpg'
 import Search from '../../img/header/Search.jpg'
-import { jwtDecode } from 'jwt-decode' // поправил импорт
+import { jwtDecode } from 'jwt-decode'
 
 const NavBar = observer(() => {
 	const { user } = useContext(Context)
