@@ -63,7 +63,7 @@ const NavBar = observer(() => {
 	const logOut = () => {
 		user.setUser({})
 		user.setIsAuth(false)
-		localStorage.removeItem('token') // добавил удаление токена при выходе
+		localStorage.removeItem('token')
 	}
 
 	/*const openSearch = () => {

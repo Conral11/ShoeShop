@@ -161,7 +161,7 @@ const Basket = () => {
 					<div className='basket_title'>
 						<h2 className='medium-title'>
 							<img src={Basket_img} alt='Картинка корзина' />
-							Ваша корзина пуста! Вернуться к просмотру товаров
+							<NavLink to="/catalog">Ваша корзина пуста! Вернуться к просмотру товаров</NavLink>
 						</h2>
 					</div>
 				) : (
