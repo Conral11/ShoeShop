@@ -107,7 +107,7 @@ const NavBar = observer(() => {
 									Главная
 								</NavLink>
 							</li>
-							<li>
+							{/*<li>
 								<NavLink
 									className='menu-nav-text'
 									to='/about'
@@ -115,7 +115,7 @@ const NavBar = observer(() => {
 								>
 									О нас
 								</NavLink>
-							</li>
+							</li>*/}
 							<li>
 								<NavLink
 									className='menu-nav-text'
@@ -137,13 +137,13 @@ const NavBar = observer(() => {
 							<li>
 								<NavLink
 									className='menu-nav-text'
-									to='/Favorite'
+									to='/favorites/'
 									onClick={closeMenu}
 								>
 									Избранное
 								</NavLink>
 							</li>
-							<li>
+							{/*<li>
 								<NavLink
 									className='menu-nav-text'
 									to='/compare'
@@ -151,7 +151,7 @@ const NavBar = observer(() => {
 								>
 									Сравнение
 								</NavLink>
-							</li>
+							</li>*/}
 							{isAdmin && ( // Проверка на администратора
 								<li>
 									<NavLink
