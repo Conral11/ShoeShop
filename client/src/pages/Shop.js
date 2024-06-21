@@ -60,7 +60,7 @@ const Shop = () => {
 					<a href='#sectionCollection'>Коллекции</a>
 					<a href='#sectionPopylBrend'>Наши бренды</a>
 					<a href='#sectionActyality'>Актуальное</a>
-					<a href='#sectionMassag'>Написать нам</a>
+					{/*<a href='#sectionMassag'>Написать нам</a>*/}
 				</div>
 			</div>
 			<div className='body-conteiner-img' style={{ position: 'relative' }}>

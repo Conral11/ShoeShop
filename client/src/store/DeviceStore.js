@@ -10,6 +10,7 @@ export default class TovarStore {
 		this._size = []
 		this._tovar = []
 		this._name = ''
+		this._comparisonList = [] // Список товаров для сравнения
 
 		this._selectedColor = ''
 		this._selectedBrend = ''
@@ -27,6 +28,24 @@ export default class TovarStore {
 	}
 	setName(name) {
 		this._name = name
+	}
+	// Методы для работы со списком сравнения
+	get comparisonList() {
+		return this._comparisonList
+	}
+
+	addToComparison(tovar) {
+		if (!this._comparisonList.find((item) => item.id === tovar.id)) {
+			this._comparisonList.push(tovar)
+		}
+	}
+
+	removeFromComparison(id) {
+		this._comparisonList = this._comparisonList.filter((item) => item.id !== id)
+	}
+
+	clearComparison() {
+		this._comparisonList = []
 	}
 	// brend
 	setBrend(brend) {

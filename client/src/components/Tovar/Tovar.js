@@ -1,67 +1,91 @@
-import React, { useState, useContext } from 'react';
-import { Context } from '../../index';
-import { NavLink } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { jwtDecode } from 'jwt-decode';
-import { createFavorites, removeFavorites } from '../../http/productAPI';
-import '../../css/Main.css';
-import like from '../../img/header/header-button-image2.jpg';
-import like_red from '../../img/header/like_red.jpg';
+import React, { useState, useContext } from 'react'
+import { Context } from '../../index'
+import { NavLink } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { jwtDecode } from 'jwt-decode'
+import { createFavorites, removeFavorites } from '../../http/productAPI'
+import '../../css/Main.css'
+import like from '../../img/header/header-button-image2.jpg'
+import like_red from '../../img/header/like_red.jpg'
+import Comparison from '../../img/header/Comparison.jpg'
 
-const Tovar = ({ id, image, name, price, brend }) => {
-	const [isAddingToFavorite, setIsAddingToFavorite] = useState(false);
-	const { user } = useContext(Context);
-	const [isInFavorites, setIsInFavorites] = useState(false);
+const Tovar = ({ id, image, name, price, brend, material, color, season }) => {
+	const [isAddingToFavorite, setIsAddingToFavorite] = useState(false)
+	const { user, tovar } = useContext(Context)
+	const [isInFavorites, setIsInFavorites] = useState(false)
 
 	const handleAddToFavorite = async () => {
 		if (!isAddingToFavorite) {
-			setIsAddingToFavorite(true);
+			setIsAddingToFavorite(true)
 
 			if (user.isAuth) {
 				try {
-					const token = localStorage.getItem('token');
+					const token = localStorage.getItem('token')
 					if (!token) {
-						toast.error('Пользователь не авторизован');
-						return;
+						toast.error('Пользователь не авторизован')
+						return
 					}
-					const decodedToken = jwtDecode(token);
-					const userId = decodedToken.id;
+					const decodedToken = jwtDecode(token)
+					const userId = decodedToken.id
 
 					if (isInFavorites) {
-						// Remove from favorites
-						await removeFavorites(id, userId);
-						setIsInFavorites(false);
-						toast.info('Товар удален из избранного');
+						await removeFavorites(id, userId)
+						setIsInFavorites(false)
+						toast.info('Товар удален из избранного')
 					} else {
-						// Add to favorites
-						await createFavorites(id, userId);
-						setIsInFavorites(true);
-						toast.info('Товар добавлен в избранное');
+						await createFavorites(id, userId)
+						setIsInFavorites(true)
+						toast.info('Товар добавлен в избранное')
 					}
 
-					setIsAddingToFavorite(false);
+					setIsAddingToFavorite(false)
 				} catch (error) {
-					setIsAddingToFavorite(false);
-					toast.error('Ошибка при обновлении избранного.');
+					setIsAddingToFavorite(false)
+					toast.error('Ошибка при обновлении избранного.')
 				}
 			} else {
-				setIsAddingToFavorite(false);
-				toast.error('Авторизуйтесь!');
+				setIsAddingToFavorite(false)
+				toast.error('Авторизуйтесь!')
 			}
 		}
-	};
+	}
 
 	const handleLikeClick = () => {
-		handleAddToFavorite();
-	};
+		handleAddToFavorite()
+	}
 
-	const likeImage = isInFavorites ? like_red : like;
+	const handleAddToComparison = () => {
+		tovar.addToComparison({
+			id,
+			image,
+			name,
+			price,
+			brend,
+			material,
+			color,
+			season,
+		})
+		toast.info('Товар добавлен к сравнению')
+	}
+
+	const likeImage = isInFavorites ? like_red : like
 
 	return (
 		<NavLink className='card'>
 			<div style={{ position: 'relative' }}>
-				<div className='like-icon' onClick={handleLikeClick} style={{ position: 'absolute', top: 0, right: 0 }}>
+				<div
+					className='like-icon'
+					onClick={handleLikeClick}
+					style={{ position: 'absolute', top: 0, right: 0 }}
+				>
 					<img src={likeImage} alt='like' />
+				</div>
+				<div
+					className='compare-icon'
+					onClick={handleAddToComparison}
+					style={{ position: 'absolute', top: 40, right: 0 }}
+				>
+					<img src={Comparison} alt='compare' />
 				</div>
 			</div>
 			<NavLink to={`/product/${id}`}>
@@ -75,7 +99,7 @@ const Tovar = ({ id, image, name, price, brend }) => {
 				</div>
 			</NavLink>
 		</NavLink>
-	);
-};
+	)
+}
 
-export default Tovar;
+export default Tovar

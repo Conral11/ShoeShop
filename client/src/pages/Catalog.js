@@ -13,6 +13,7 @@ import {
 	fetchSeason,
 } from '../http/productAPI'
 import Pagination from '../components/Pagination/Pagination'
+import Comparison from '../components/Comparison/Comparison' // Импортируем компонент
 
 const Catalog = observer(() => {
 	const { tovar } = useContext(Context)
@@ -53,7 +54,7 @@ const Catalog = observer(() => {
 		tovar.selectedSize,
 		tovar.selectedMaterial,
 		tovar.selectedSeason,
-		tovar.name, // добавляем tovar.name в зависимости
+		tovar.name,
 		tovar.page,
 	])
 
@@ -73,6 +74,7 @@ const Catalog = observer(() => {
 						/>
 					))}
 				</div>
+				<Comparison /> {/* Добавляем компонент для сравнения */}
 				{<Pagination />}
 			</section>
 		</main>
