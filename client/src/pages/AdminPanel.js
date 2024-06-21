@@ -121,32 +121,34 @@ const AdminPanel = () => {
 	}
 
 	return (
-		<main className='main container2 basket'>
-			<button className='button-custom-admin' onClick={openSizeModal}>
-				Добавить размер
-			</button>
-			<button className='button-custom-admin' onClick={openBrendModal}>
-				Добавить бренд
-			</button>
-			<button className='button-custom-admin' onClick={openProductModal}>
-				Добавить продукт
-			</button>
-			<button className='button-custom-admin' onClick={openColorModal}>
-				Добавить цвет
-			</button>
-			<button className='button-custom-admin' onClick={openMaterialModal}>
-				Добавить материал
-			</button>
-			<button className='button-custom-admin' onClick={openSeasonModal}>
-				Добавить сезон
-			</button>
-			<CreateSize isOpen={sizeVisible} onClose={closeModal} />
-			<CreateBrend isOpen={brendVisible} onClose={closeModal} />
-			<CreateProduct isOpen={productVisible} onClose={closeModal} />
-			<CreateColor isOpen={colorVisible} onClose={closeModal} />
-			<CreateMaterial isOpen={materialVisible} onClose={closeModal} />
-			<CreateSeason isOpen={seasonVisible} onClose={closeModal} />
-		</main>
+		<section className='senter'>
+			<main className='main container2 basket'>
+				<button className='button-custom-admin' onClick={openSizeModal}>
+					Добавить размер
+				</button>
+				<button className='button-custom-admin' onClick={openBrendModal}>
+					Добавить бренд
+				</button>
+				<button className='button-custom-admin' onClick={openProductModal}>
+					Добавить продукт
+				</button>
+				<button className='button-custom-admin' onClick={openColorModal}>
+					Добавить цвет
+				</button>
+				<button className='button-custom-admin' onClick={openMaterialModal}>
+					Добавить материал
+				</button>
+				<button className='button-custom-admin' onClick={openSeasonModal}>
+					Добавить сезон
+				</button>
+				<CreateSize isOpen={sizeVisible} onClose={closeModal} />
+				<CreateBrend isOpen={brendVisible} onClose={closeModal} />
+				<CreateProduct isOpen={productVisible} onClose={closeModal} />
+				<CreateColor isOpen={colorVisible} onClose={closeModal} />
+				<CreateMaterial isOpen={materialVisible} onClose={closeModal} />
+				<CreateSeason isOpen={seasonVisible} onClose={closeModal} />
+			</main>
+		</section>
 	)
 }
 

@@ -7,7 +7,7 @@ import { createFavorites, removeFavorites } from '../../http/productAPI'
 import '../../css/Main.css'
 import like from '../../img/header/header-button-image2.jpg'
 import like_red from '../../img/header/like_red.jpg'
-import Comparison from '../../img/header/Comparison.jpg'
+//import Comparison from '../../img/header/Comparison.jpg'
 
 const Tovar = ({ id, image, name, price, brend, material, color, season }) => {
 	const [isAddingToFavorite, setIsAddingToFavorite] = useState(false)
@@ -80,13 +80,13 @@ const Tovar = ({ id, image, name, price, brend, material, color, season }) => {
 				>
 					<img src={likeImage} alt='like' />
 				</div>
-				<div
+				{/*<div
 					className='compare-icon'
 					onClick={handleAddToComparison}
 					style={{ position: 'absolute', top: 40, right: 0 }}
 				>
 					<img src={Comparison} alt='compare' />
-				</div>
+	</div>*/}
 			</div>
 			<NavLink to={`/product/${id}`}>
 				<img className='card-img' src={image} alt={name} />

@@ -5,7 +5,10 @@ import Basket from './Basket'
 import AdminPanel from './AdminPanel'
 import TovarPage from './TovarPage'
 import Favorite from './Favorite'
-
+import ONas from './FooterText/ONas'
+import YxodZaOb from './FooterText/YxodZaOb'
+import Oplata from './FooterText/Oplata'
+import Sertif from './FooterText/Sertif'
 export const authRoutes = [
 	// {
 	// 	path: '/cart',
@@ -45,5 +48,21 @@ export const publicRoutes = [
 	{
 		path: '/catalog',
 		Component: Catalog,
+	},
+	{
+		path: '/ONas',
+		Component: ONas,
+	},
+	{
+		path: '/YxodZaOb',
+		Component: YxodZaOb,
+	},
+	{
+		path: '/Oplata',
+		Component: Oplata,
+	},
+	{
+		path: '/Sertif',
+		Component: Sertif,
 	},
 ]

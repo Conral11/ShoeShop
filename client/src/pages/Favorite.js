@@ -9,6 +9,8 @@ import FavoritesTovar from '../components/FavoritesTovar/FavoritesTovar'
 import '../css/Main.css'
 import { Context } from '../index'
 import { jwtDecode } from 'jwt-decode'
+import favour from '../img/basket/favour.jpg'
+import { NavLink } from 'react-router-dom'
 
 const Favorite = () => {
 	const { user } = useContext(Context)
@@ -99,37 +101,50 @@ const Favorite = () => {
 	}
 
 	return (
-		<main className='main container'>
-			{user.isAuth ? (
-				<div>
-					{favorites.length === 0 ? (
-						<div className='empty-favorites'>
-							<h2
-								className='medium-title'
-								style={{ textAlign: 'center', width: '1198px' }}
-							>
-								Ваш список избранного пуст!
-							</h2>
-						</div>
-					) : (
-						<div className=''>
-							<div className='favorites-product'>
-								{favorites.map((product) => (
-									<FavoritesTovar
-										key={product.tovarId}
-										product={product}
-										tovarDetails={tovarDetails[product.tovarId]}
-										onRemove={handleRemoveProduct}
-									/>
-								))}
+		<section className='senter'>
+			<main className='main container '>
+				{user.isAuth ? (
+					<div>
+						{favorites.length === 0 ? (
+							<div className='empty-favorites' >
+								<h2
+									className='medium-title'
+									style={{ textAlign: 'center', width: '1198px' }}
+								>
+									<img src={favour} alt='Картинка корзина' />
+									<NavLink to="/catalog">Избранного  нет. Перейти в  Каталог</NavLink>
+								</h2>
+
 							</div>
-						</div>
-					)}
-				</div>
-			) : (
-				<div>Авторизуйтесь...</div>
-			)}
-		</main>
+						) : (
+							<div className=''>
+								<div className='favorites-product'>
+									{favorites.map((product) => (
+										<FavoritesTovar
+											key={product.tovarId}
+											product={product}
+											tovarDetails={tovarDetails[product.tovarId]}
+											onRemove={handleRemoveProduct}
+										/>
+									))}
+								</div>
+							</div>
+						)}
+					</div>
+				) : (
+					<div className='empty-favorites' >
+						<h2
+							className='medium-title'
+							style={{ textAlign: 'center', width: '1198px' }}
+						>
+							<img src={favour} alt='Картинка корзина' />
+							<NavLink to="/login">Для добавления избранного войдите в аккаунт </NavLink>
+						</h2>
+
+					</div>
+				)}
+			</main>
+		</section>
 	)
 }
 
