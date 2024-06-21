@@ -39,6 +39,10 @@
 	text-decoration: underline;
 }
 
+.season {
+	margin-top: 10px;
+}
+
 .custom-button {
 	background-color: transparent;
 	-webkit-transition: 0.5s;
@@ -291,10 +295,6 @@ h6 {
 	transform: rotate(90deg);
 }
 
-.logo {
-	min-width: 150px;
-	height: auto;
-}
 
 .header-container-button {
 	display: -webkit-box;

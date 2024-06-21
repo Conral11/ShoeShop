@@ -192,7 +192,7 @@ const Shop = () => {
 				<div className='body-actyale'>
 					<img src={actyaleBags} alt='Bags' />
 					<div className='body-collection-card-text'>
-						<p>Эффектные сумки на любой день</p>
+						<p className='season'>Эффектные сумки на любой день</p>
 						<NavLink
 							to='/catalog'
 							key={tovar.pol.id}
@@ -208,7 +208,7 @@ const Shop = () => {
 				<div className='body-actyale'>
 					<img src={actyaleShoes} alt='Shoes' />
 					<div className='body-left-card-text'>
-						<p>Всегда чистая и удобная обувь</p>
+						<p className='season'>Всегда чистая и удобная обувь</p>
 						<NavLink
 							to='/catalog'
 							key={tovar.pol.id}
